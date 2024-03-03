@@ -5,6 +5,7 @@ import es.winepalace.gestwp.entity.Shop;
 import es.winepalace.gestwp.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ShopService {
@@ -16,7 +17,7 @@ public class ShopService {
         this.shopRepository = shopRepository;
     }
 
-    public Shop addShop(ShopDTO shopDTO) {
+    public Mono<Shop> addShop(ShopDTO shopDTO) {
 
         Shop shopToSave = Shop.builder()
                 .shopName(shopDTO.getShopName())
