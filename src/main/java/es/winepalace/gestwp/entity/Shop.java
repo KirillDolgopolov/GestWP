@@ -18,7 +18,6 @@ public class Shop {
     @Id
     @Column("shopID")
     private Integer shopID;
-
     @NotNull
     private String shopName;
     @NotNull
