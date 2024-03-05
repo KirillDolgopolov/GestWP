@@ -5,10 +5,11 @@ import es.winepalace.gestwp.entity.Shop;
 import es.winepalace.gestwp.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ShopService {
+public class ShopService implements IShopService{
 
     private final ShopRepository shopRepository;
 
@@ -26,5 +27,10 @@ public class ShopService {
                 .shopEmail(shopDTO.getShopEmail())
                 .build();
         return shopRepository.save(shopToSave);
+    }
+
+    @Override
+    public Flux<Shop> getAllShops() {
+        return shopRepository.findAll();
     }
 }
