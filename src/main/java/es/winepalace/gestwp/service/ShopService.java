@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ShopService implements IShopService{
+public class ShopService implements IShopService {
 
     private final ShopRepository shopRepository;
 
@@ -32,5 +32,15 @@ public class ShopService implements IShopService{
     @Override
     public Flux<Shop> getAllShops() {
         return shopRepository.findAll();
+    }
+
+    @Override
+    public Mono<Shop> getShopById(Integer id) {
+        return shopRepository.findById(id);
+    }
+
+    @Override
+    public void deleteShop(Integer id) {
+        shopRepository.deleteById(id);
     }
 }

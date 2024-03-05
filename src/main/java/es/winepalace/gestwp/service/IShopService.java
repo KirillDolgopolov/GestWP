@@ -8,4 +8,6 @@ import reactor.core.publisher.Mono;
 public interface IShopService {
     public Mono<Shop> addShop(ShopDTO shopDTO);
     public Flux<Shop> getAllShops();
+    public Mono<Shop> getShopById(Integer id);
+    public void deleteShop(Integer id);
 }

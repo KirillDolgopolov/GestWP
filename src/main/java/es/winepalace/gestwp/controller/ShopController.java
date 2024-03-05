@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import es.winepalace.gestwp.service.ShopService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -30,11 +31,30 @@ public class ShopController {
     @PostMapping(path = "/add")
     @Operation(summary = "Save new shop")
     public ResponseEntity<Mono<Shop>> addShop(@RequestBody ShopDTO shopDTO) {
-        return new ResponseEntity<>(shopService.addShop(shopDTO), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(shopService.addShop(shopDTO), HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping(path = "/all")
     public ResponseEntity<Flux<Shop>> getAllShops() {
         return new ResponseEntity<>(shopService.getAllShops(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/getById") //TODO Return NOT FOUND if shop not found
+    public Mono<ResponseEntity<Shop>> getShopById(@RequestBody Integer id) {
+
+            return shopService.getShopById(id)
+                    .map(shop -> new ResponseEntity<>(shop, HttpStatus.FOUND))
+                    .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Shop not found")));
+
+    }
+
+    @DeleteMapping(path = "/delete") //TODO NOT WORKS
+    public ResponseEntity<Void> deleteShop(@RequestBody Integer id) {
+        shopService.deleteShop(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
