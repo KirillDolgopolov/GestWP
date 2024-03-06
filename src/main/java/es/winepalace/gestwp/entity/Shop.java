@@ -17,7 +17,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Shop {
     @Id
     @Column("shopID")
-    private Integer shopID;
+    private Integer ID;
     @NotNull
     private String shopName;
     @NotNull

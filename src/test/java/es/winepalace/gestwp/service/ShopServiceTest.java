@@ -24,7 +24,7 @@ class ShopServiceTest {
         shopService = new ShopService(shopRepository);
 
         Shop shop = Shop.builder()
-                .shopID(1)
+                .ID(1)
                 .shopName("Test Shop")
                 .shopAddress("Calle de la Test Shop 13, Barcelona")
                 .shopPhone("999 88 77 66")

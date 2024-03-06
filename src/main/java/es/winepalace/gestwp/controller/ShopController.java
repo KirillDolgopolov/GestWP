@@ -2,6 +2,7 @@ package es.winepalace.gestwp.controller;
 
 import es.winepalace.gestwp.DTO.ShopDTO;
 import es.winepalace.gestwp.entity.Shop;
+import es.winepalace.gestwp.entity.UpdateShopRequest;
 import es.winepalace.gestwp.service.IShopService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,23 +39,36 @@ public class ShopController {
         }
     }
 
+    @PutMapping(path = "/update")
+    @Operation(summary = "Update shop")
+    public ResponseEntity<Mono<Shop>> updateShop(@RequestBody UpdateShopRequest updateShopRequest
+    ) {
+        try {
+            return new ResponseEntity<>(shopService.updateShop(updateShopRequest.getId(), updateShopRequest.getShopDTO()), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @GetMapping(path = "/all")
     public ResponseEntity<Flux<Shop>> getAllShops() {
         return new ResponseEntity<>(shopService.getAllShops(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/getById") //TODO Return NOT FOUND if shop not found
+    @GetMapping(path = "/getById")
     public Mono<ResponseEntity<Shop>> getShopById(@RequestBody Integer id) {
 
-            return shopService.getShopById(id)
-                    .map(shop -> new ResponseEntity<>(shop, HttpStatus.FOUND))
-                    .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Shop not found")));
+        return shopService.getShopById(id)
+                .map(shop -> new ResponseEntity<>(shop, HttpStatus.FOUND))
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Shop not found")));
 
     }
 
-    @DeleteMapping(path = "/delete") //TODO NOT WORKS
-    public ResponseEntity<Void> deleteShop(@RequestBody Integer id) {
-        shopService.deleteShop(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+    @DeleteMapping(path = "/delete")
+    public Mono<Void> deleteShop(@RequestBody Integer id) {
+        return shopService.deleteShop(id);
     }
+
+
 }
