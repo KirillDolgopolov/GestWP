@@ -1,0 +1,35 @@
+[33mcommit 87e006d42626332640f45f37939b76aee8361bed[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Kirill Dolgopolov <kirdolgopolov@gmail.com>
+Date:   Tue Mar 5 13:03:47 2024 +0100
+
+    add MVC methods, need to tune
+
+[33mcommit 09287f09748427a80bfb9df03cb172a31a5045ee[m
+Author: Kirill Dolgopolov <kirdolgopolov@gmail.com>
+Date:   Tue Mar 5 12:01:00 2024 +0100
+
+    add interface for service layer
+
+[33mcommit c3e74c183b470e1e11124a06eee736d312e191a0[m
+Author: Kirill Dolgopolov <kirdolgopolov@gmail.com>
+Date:   Mon Mar 4 13:03:37 2024 +0100
+
+    try to make OpenAPI DOCs
+
+[33mcommit d8a8e32e46ab12dfee88c305e52f0385c4cf2a1b[m
+Author: Kirill Dolgopolov <kirdolgopolov@gmail.com>
+Date:   Sun Mar 3 12:27:26 2024 +0100
+
+    changed MVC and drivers database for Reactive conception
+
+[33mcommit 3ea6021785216e49ab5bb00d10b9ac450ca58802[m
+Author: Kirill Dolgopolov <kirdolgopolov@gmail.com>
+Date:   Sun Mar 3 09:32:50 2024 +0100
+
+    add MVC for shop entity, non reactive
+
+[33mcommit dbc25eb12a16dc53b398c7b0ab4b536be8fc3ca6[m
+Author: Kirill Dolgopolov <kirdolgopolov@gmail.com>
+Date:   Sat Mar 2 09:08:28 2024 +0100
+
+    start commit

@@ -51,11 +51,13 @@ public class ShopController {
     }
 
     @GetMapping(path = "/all")
+    @Operation(summary = "Get all shops")
     public ResponseEntity<Flux<Shop>> getAllShops() {
         return new ResponseEntity<>(shopService.getAllShops(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/getById")
+    @Operation(summary = "Get shop by id")
     public Mono<ResponseEntity<Shop>> getShopById(@RequestBody Integer id) {
 
         return shopService.getShopById(id)
@@ -66,6 +68,7 @@ public class ShopController {
 
 
     @DeleteMapping(path = "/delete")
+    @Operation(summary = "Delete shop by id")
     public Mono<Void> deleteShop(@RequestBody Integer id) {
         return shopService.deleteShop(id);
     }
