@@ -22,6 +22,7 @@ public class ShopService implements IShopService {
         this.shopRepository = shopRepository;
     }
 
+    @Override
     public Mono<Shop> addShop(ShopDTO shopDTO) {
 
         Shop shopToSave = Shop.builder()
