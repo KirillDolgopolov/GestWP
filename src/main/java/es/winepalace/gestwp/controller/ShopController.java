@@ -62,8 +62,7 @@ public class ShopController {
 
         return shopService.getShopById(id)
                 .map(shop -> new ResponseEntity<>(shop, HttpStatus.FOUND))
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Shop not found")));
-
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
 
