@@ -16,16 +16,17 @@ import org.springframework.data.relational.core.mapping.Table;
 @NoArgsConstructor
 @Data
 @Table
-public class Shop {
+public class Task {
     @Id
-    @Column("shopID")
+    @Column("taskID")
     private Integer ID;
     @NotNull
+    @Column("Description")
     private String shopName;
-    @NotNull
-    private String shopAddress;
-    @NotNull
-    private String shopPhone;
-    @NotNull
-    private String shopEmail;
+    private String taskDescription;
+    private String author;
+    private String worker;
+    private String status;
+    private boolean isDone;
+
 }
